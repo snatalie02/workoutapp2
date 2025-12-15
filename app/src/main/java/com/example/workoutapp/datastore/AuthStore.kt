@@ -1,4 +1,3 @@
-login&logout
 package com.example.workoutapp.datastore
 
 import android.content.Context
