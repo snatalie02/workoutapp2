@@ -11,6 +11,7 @@ import com.example.workoutapp.repository.AuthRepository
 import com.example.workoutapp.repository.FriendsRepository
 import com.example.workoutapp.ui.auth.LoginScreen
 import com.example.workoutapp.ui.auth.RegisterScreen
+import com.example.workoutapp.ui.exercise.AddExerciseScreen
 import com.example.workoutapp.ui.exercise.ExerciseScreen
 import com.example.workoutapp.ui.friends.AddFriendsScreen
 import com.example.workoutapp.ui.home.HomeScreen
@@ -106,6 +107,18 @@ class MainActivity : ComponentActivity() {
                         },
                         naviateToPickExercise = {nav.navigate("pick_exercise")},
                         viewModel = workoutVM
+                    )
+                }
+
+                composable("pick_exercise") {
+                    AddExerciseScreen(
+                        navigateBack = { nav.popBackStack() },
+                        viewModel = workoutVM,
+                        token = token,
+                        onAddExercise = { workoutItem, time, reps ->
+                            workoutVM.addExercise(token, workoutItem, time, reps)
+                            nav.popBackStack()
+                        }
                     )
                 }
 
