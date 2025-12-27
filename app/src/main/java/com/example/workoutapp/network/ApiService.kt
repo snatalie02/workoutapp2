@@ -36,4 +36,20 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Body body: AddFriendRequest
     ): SimpleResponse
+
+    @GET("private/workouts/list")
+    suspend fun getWorkoutList(
+        @Header("Authorization") token: String
+    ): WorkoutListResponse
+
+    @POST("private/workouts")
+    suspend fun addWorkout(
+        @Header("Authorization") token: String,
+        @Body body: AddWorkoutRequest
+    ): AddWorkoutResponse
+
+    @GET("private/workouts/history")
+    suspend fun getMyHistory(
+        @Header("Authorization") token: String
+    ): WorkoutHistoryResponse
 }
