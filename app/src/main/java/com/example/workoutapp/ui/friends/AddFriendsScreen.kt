@@ -166,9 +166,10 @@ fun AddFriendsScreen(
                     "Suggested",
                     color = Color.White,
                     fontSize = 22.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(start = 10.dp)
                 )
-                Spacer(Modifier.height(10.dp))
+                Spacer(Modifier.height(20.dp))
             }
 
             // SUGGESTED USERS
