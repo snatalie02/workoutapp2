@@ -17,6 +17,7 @@ class FriendsViewModel(
     // <FriendsModel> (id : int, username : string, etc)
     // bellow give the list data from api
     val friends: StateFlow<List<com.example.workoutapp.model.FriendItem>> get() = _friends
+    // flow krn data berubah & dibuat jadi state di ui add friends
 
     private val _suggest = MutableStateFlow(listOf<com.example.workoutapp.model.SuggestItem>())
     val suggest: StateFlow<List<com.example.workoutapp.model.SuggestItem>> get() = _suggest

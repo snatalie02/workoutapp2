@@ -35,6 +35,7 @@ fun AddFriendsScreen(
     val friends = vm.friends.collectAsState().value
     // login : if authvm change state (<string> in authvm) "" to success the loginscreen auto read the state
     // after func load in friendsvm will keep the list friends data
+    // collectAsState : cannot read flow only state
 
     val suggest = vm.suggest.collectAsState().value
 
