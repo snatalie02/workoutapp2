@@ -72,10 +72,11 @@ fun HomeScreen(
                 contentPadding = PaddingValues(0.dp)
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.ic_logout),
-                    contentDescription = null,
-                    colorFilter = ColorFilter.tint(Color.White),
-                    modifier = Modifier.size(20.dp)
+                    painter = painterResource(id = R.drawable.outline_logout_24),
+                    contentDescription = "Logout",
+                    colorFilter = ColorFilter.tint(Color.Black),
+                    modifier = Modifier
+                        .size(20.dp)
                 )
             }
 

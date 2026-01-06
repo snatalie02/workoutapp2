@@ -4,17 +4,20 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.*
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.*
 import com.example.workoutapp.datastore.AuthStore
 import com.example.workoutapp.repository.AuthRepository
 import com.example.workoutapp.repository.FriendsRepository
 import com.example.workoutapp.ui.auth.LoginScreen
 import com.example.workoutapp.ui.auth.RegisterScreen
+import com.example.workoutapp.ui.exercise.AddExerciseScreen
 import com.example.workoutapp.ui.exercise.ExerciseScreen
 import com.example.workoutapp.ui.friends.AddFriendsScreen
 import com.example.workoutapp.ui.home.HomeScreen
 import com.example.workoutapp.viewmodel.AuthViewModel
 import com.example.workoutapp.viewmodel.FriendsViewModel
+import com.example.workoutapp.viewmodel.WorkoutViewModel
 
 class MainActivity : ComponentActivity() {
     // MainActivity : first screen that launches when app start
@@ -50,6 +53,8 @@ class MainActivity : ComponentActivity() {
 
             val startDestination = if (token.isBlank()) "login" else "home"
             // jika token "" empty masuk view login, jika (masih login) tidak langsung view home
+
+            val workoutVM: WorkoutViewModel = viewModel()
 
             NavHost(navController = nav, startDestination = startDestination) {
 
@@ -87,11 +92,33 @@ class MainActivity : ComponentActivity() {
                     )
                 }
 
-                // BAGIAN : SHARON
                 composable("exercise") {
                     ExerciseScreen(
+                        token = token,
+                        username = username,
                         navigateHome = { nav.navigate("home") },
-                        navigateToAddFriends = { nav.navigate("add_friends") }
+                        navigateToAddFriends = { nav.navigate("add_friends") },
+                        onLogout = {
+                            authVM.logout {
+                                nav.navigate("login") {
+                                    popUpTo(nav.graph.startDestinationId) { inclusive = true }
+                                }
+                            }
+                        },
+                        naviateToPickExercise = {nav.navigate("pick_exercise")},
+                        viewModel = workoutVM
+                    )
+                }
+
+                composable("pick_exercise") {
+                    AddExerciseScreen(
+                        navigateBack = { nav.popBackStack() },
+                        viewModel = workoutVM,
+                        token = token,
+                        onAddExercise = { workoutItem, time, reps ->
+                            workoutVM.addExercise(token, workoutItem, time, reps)
+                            nav.popBackStack()
+                        }
                     )
                 }
 
