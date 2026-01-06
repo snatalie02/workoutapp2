@@ -35,6 +35,11 @@ fun AddFriendsScreen(
     var search by remember { mutableStateOf("") }
 
     val friends = vm.friends.collectAsState().value
+
+    // login : if authvm change state (<string> in authvm) "" to success the loginscreen auto read the state
+    // after func load in friendsvm will keep the list friends data
+    // collectAsState : cannot read flow only state
+
     val suggest = vm.suggest.collectAsState().value
 
     LaunchedEffect(Unit) {
@@ -71,10 +76,11 @@ fun AddFriendsScreen(
                 contentPadding = PaddingValues(0.dp)
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.ic_logout),
-                    contentDescription = null,
-                    colorFilter = ColorFilter.tint(Color.White),
-                    modifier = Modifier.size(20.dp)
+                    painter = painterResource(id = R.drawable.outline_logout_24),
+                    contentDescription = "Logout",
+                    colorFilter = ColorFilter.tint(Color.Black),
+                    modifier = Modifier
+                        .size(20.dp)
                 )
             }
         }

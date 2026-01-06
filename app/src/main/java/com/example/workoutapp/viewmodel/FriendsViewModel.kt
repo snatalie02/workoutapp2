@@ -14,8 +14,17 @@ class FriendsViewModel(
     private val repo: FriendsRepository
 ) : ViewModel() {
 
-    private val _friends = MutableStateFlow(listOf<FriendItem>())
-    val friends: StateFlow<List<FriendItem>> get() = _friends
+//<<<<<<< HEAD
+//    private val _friends = MutableStateFlow(listOf<FriendItem>())
+//    val friends: StateFlow<List<FriendItem>> get() = _friends
+//=======
+    private val _friends = MutableStateFlow(listOf<com.example.workoutapp.model.FriendItem>())
+    // diff with login : <string> and the func bellow only give "success" or "error..."
+    // <FriendsModel> (id : int, username : string, etc)
+    // bellow give the list data from api
+    val friends: StateFlow<List<com.example.workoutapp.model.FriendItem>> get() = _friends
+    // flow krn data berubah & dibuat jadi state di ui add friends
+//>>>>>>> main
 
     private val _suggest = MutableStateFlow(listOf<SuggestItem>())
     val suggest: StateFlow<List<SuggestItem>> get() = _suggest

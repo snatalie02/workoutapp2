@@ -32,6 +32,7 @@ interface ApiService {
         @Body body: AddFriendRequest
     ): SimpleResponse
 
+
     // ==================== PRIVATE ROUTES - STREAK (NEW!) ====================
     @POST("private/streak/checkin")
     suspend fun checkInStreak(
@@ -44,7 +45,25 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Path("friendId") friendId: Int
     ): Response<StreakStatusApiResponse>
+
+
+    @GET("private/workouts/list")
+    suspend fun getWorkoutList(
+        @Header("Authorization") token: String
+    ): WorkoutListResponse
+
+    @POST("private/workouts")
+    suspend fun addWorkout(
+        @Header("Authorization") token: String,
+        @Body body: AddWorkoutRequest
+    ): AddWorkoutResponse
+
+    @GET("private/workouts/history")
+    suspend fun getMyHistory(
+        @Header("Authorization") token: String
+    ): WorkoutHistoryResponse
 }
+
 
 //package com.example.workoutapp.network
 //
@@ -85,3 +104,4 @@ interface ApiService {
 //        @Body body: AddFriendRequest
 //    ): SimpleResponse
 //}
+
