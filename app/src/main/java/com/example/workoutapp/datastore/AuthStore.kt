@@ -6,6 +6,8 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.map
 
 val Context.authDataStore by preferencesDataStore("auth_prefs")
+//val Context.dataStore by preferencesDataStore(name = "auth")
+
 // Context : this DataStore belongs to your MainActivity.
 // authDataStore : This becomes a property you can access (AuthStore can access)
 // Create or open a DataStore file named auth_prefs. (temporary save token, name if login / register haven't logout)
@@ -48,5 +50,7 @@ class AuthStore(private val context: Context) {
     val getUsername = context.authDataStore.data.map {
         it[USERNAME] ?: "User"
     }
+
+
 }
 

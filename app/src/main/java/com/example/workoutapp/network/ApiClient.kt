@@ -8,8 +8,16 @@ import retrofit2.converter.gson.GsonConverterFactory
 // BAGIAN : SHARON
 object ApiClient {
 
+    // ✅ UNTUK EMULATOR ANDROID
     private const val BASE_URL = "http://10.0.2.2:3000/api/"
+    //10.0.2.2 = Localhost dari perspective emulator Android
+    //10.0.2.2:3000 = Port 3000 di laptop kamu
 
+    // ✅ UNTUK DEVICE FISIK (ganti dengan IP komputer kamu)
+    // private const val BASE_URL = "http://192.168.1.100:3000/api/"
+
+    // ✅ UNTUK TESTING DI LOCALHOST (kalau pakai Chrome/Browser)
+    // private const val BASE_URL = "http://localhost:3000/api/"
     private val logging = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
     }

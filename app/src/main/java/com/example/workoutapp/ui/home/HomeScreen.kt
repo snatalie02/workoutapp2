@@ -28,6 +28,7 @@ import kotlinx.coroutines.delay
 import java.text.SimpleDateFormat
 import com.example.workoutapp.R
 import java.util.*
+import androidx.activity.compose.BackHandler
 
 @Composable
 fun HomeScreen(
@@ -36,6 +37,10 @@ fun HomeScreen(
     navigateToAddFriends: () -> Unit,
     onLogout: () -> Unit
 ) {
+//    BackHandler {
+//        onLogout()
+//    }
+
     val today = remember {
         SimpleDateFormat("EEEE, d MMMM yyyy", Locale.getDefault())
             .format(Date())
@@ -56,7 +61,7 @@ fun HomeScreen(
         ) {
 
             Text(
-                text = "Welcome ${username ?: "User"}!",
+                text = "Welcome $username!",
                 color = Color.White,
                 fontSize = 32.sp,
                 fontWeight = FontWeight.Bold
@@ -73,11 +78,12 @@ fun HomeScreen(
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_logout),
-                    contentDescription = null,
+                    contentDescription = "Logout",
                     colorFilter = ColorFilter.tint(Color.White),
                     modifier = Modifier.size(20.dp)
                 )
             }
+
 
         }
 
