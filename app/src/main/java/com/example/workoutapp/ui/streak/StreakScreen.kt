@@ -119,7 +119,7 @@ fun StreakScreen(
 
                         Spacer(modifier = Modifier.height(16.dp))
 
-                        // Message Box - FULL WIDTH CENTERED
+                        // Message Box
                         Card(
                             shape = RoundedCornerShape(16.dp),
                             colors = CardDefaults.cardColors(
