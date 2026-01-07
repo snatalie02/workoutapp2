@@ -29,7 +29,10 @@ data class StreakStatusResponse(
     @SerializedName("friend_check_in_status")
     val friendCheckInStatus: Boolean,
     @SerializedName("last_updated")
-    val lastUpdated: String
+    val lastUpdated: String,
+    @SerializedName("was_reset")
+    val wasReset: Boolean
+
 )
 
 // ==================== API WRAPPER RESPONSES ====================
