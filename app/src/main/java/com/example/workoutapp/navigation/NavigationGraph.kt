@@ -84,7 +84,6 @@ fun NavigationGraph(
                 navigateToAddFriends = { navController.navigate("friends") },
                 naviateToPickExercise = { navController.navigate("pick_exercise") },
                 onLogout = {
-                    // PERBAIKAN DI SINI JUGA
                     authViewModel.logout {
                         navController.navigate("login") {
                             popUpTo(0) { inclusive = true }
