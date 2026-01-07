@@ -59,7 +59,6 @@ fun NavigationGraph(
             )
         }
 
-        // Home Screen
         composable("home") {
             HomeScreen(
                 username = username,
@@ -75,7 +74,6 @@ fun NavigationGraph(
             )
         }
 
-        // Exercise Screens
         composable("exercise") {
             ExerciseScreen(
                 token = token,
@@ -106,7 +104,6 @@ fun NavigationGraph(
             )
         }
 
-        // Friends Screen
         composable("friends") {
             AddFriendsScreen(
                 vm = friendsViewModel,
@@ -126,7 +123,6 @@ fun NavigationGraph(
             )
         }
 
-        // Streak Screen
         composable(
             route = "streak/{friendId}/{friendUsername}",
             arguments = listOf(
