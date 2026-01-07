@@ -28,6 +28,8 @@ fun LoginScreen(
     // .value : Gets the actual string value inside the state.
     // output : just open empty string "", already login/register string "success" or "error: ... "
 
+    val isError = state == "error_login"
+
     // if already login go to view home
     LaunchedEffect(state) {
         if (state == "success") navigateHome()
@@ -41,13 +43,21 @@ fun LoginScreen(
     ) {
 
         // error handling if state error
-        if (state.startsWith("error")) {
-            Text(
-                text = state,
-                color = Color.Red,
-                modifier = Modifier.padding(8.dp)
-            )
-        }
+//        if (state.startsWith("error")) {
+//            Text(
+//                text = state,
+//                color = Color.Red,
+//                modifier = Modifier.padding(8.dp)
+//            )
+//        }
+//        if (isError) {
+//            Text(
+//                text = "Username atau password salah",
+//                color = Color.Red,
+//                style = MaterialTheme.typography.bodySmall,
+//                modifier = Modifier.padding(8.dp)
+//            )
+//        }
 
         // HEADER HITAM
         Column(
@@ -131,7 +141,11 @@ fun LoginScreen(
 
                 OutlinedTextField(
                     value = username,
-                    onValueChange = { username = it }, // mengikuti apa yang kita tulis
+                    onValueChange = {
+                        username = it
+                        if (isError) vm.clearError()
+                    }, // mengikuti apa yang kita tulis
+                    isError = isError,
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = 8.dp),
@@ -150,6 +164,7 @@ fun LoginScreen(
                 OutlinedTextField(
                     value = password,
                     onValueChange = { password = it },
+                    isError = isError,
                     singleLine = true,
                     visualTransformation = PasswordVisualTransformation(), // func in android jetpack compose
                     modifier = Modifier
@@ -157,7 +172,18 @@ fun LoginScreen(
                         .padding(top = 8.dp)
                 )
 
-                Spacer(modifier = Modifier.height(32.dp))
+                Spacer(modifier = Modifier.height(12.dp))
+
+                if (isError) {
+                    Text(
+                        text = "Username atau password salah",
+                        color = Color.Red,
+                        style = MaterialTheme.typography.bodySmall,
+                        modifier = Modifier.padding(8.dp)
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(25.dp))
 
                 // LOGIN BUTTON
                 Button(

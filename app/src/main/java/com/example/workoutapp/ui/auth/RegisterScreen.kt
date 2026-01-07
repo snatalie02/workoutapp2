@@ -24,7 +24,7 @@ fun RegisterScreen(
     var password by remember { mutableStateOf("") }
 
     val state = vm.state.collectAsState().value
-
+    val isError = state =="error_register"
     LaunchedEffect(state) {
         if (state == "success") navigateHome()
     }
@@ -36,13 +36,13 @@ fun RegisterScreen(
             .padding(top = 48.dp)
     ) {
 
-        if (state.startsWith("error")) {
-            Text(
-                text = state,
-                color = Color.Red,
-                modifier = Modifier.padding(8.dp)
-            )
-        }
+//        if (state.startsWith("error")) {
+//            Text(
+//                text = state,
+//                color = Color.Red,
+//                modifier = Modifier.padding(8.dp)
+//            )
+//        }
 
         // HEADER HITAM
         Column(
@@ -126,7 +126,10 @@ fun RegisterScreen(
 
                 OutlinedTextField(
                     value = username,
-                    onValueChange = { username = it },
+                    onValueChange = {
+                        username = it
+                        if (isError) vm.clearError()
+                    },
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = 8.dp),
@@ -151,8 +154,16 @@ fun RegisterScreen(
                         .fillMaxWidth()
                         .padding(top = 8.dp)
                 )
+                Spacer(modifier = Modifier.height(12.dp))
+                if (isError) {
+                    Text(
+                        text = "Username sudah digunakan atau data tidak valid",
+                        color = Color.Red,
+                        style = MaterialTheme.typography.bodySmall
+                    )
+                }
 
-                Spacer(modifier = Modifier.height(32.dp))
+                Spacer(modifier = Modifier.height(25.dp))
 
                 // REGISTER BUTTON
                 Button(

@@ -27,7 +27,7 @@ class AuthViewModel(
                 store.saveToken(token, username)
                 _state.value = "success"
             } catch (e: Exception) {
-                _state.value = "error: ${e.message}"
+                _state.value = "error_register" //: ${e.message}"
             }
         }
     }
@@ -42,9 +42,13 @@ class AuthViewModel(
                 // go to AuthStore
                 _state.value = "success" // when _state change to success loginscreen read state into success go back to login screen to go to home
             } catch (e: Exception) {
-                _state.value = "error: ${e.message}"
+                _state.value = "error_login" //:${e.message}"
             }
         }
+    }
+
+    fun clearError() {
+        _state.value = ""
     }
 
 
