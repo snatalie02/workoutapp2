@@ -66,12 +66,11 @@ fun NavigationGraph(
                 navigateToExercise = { navController.navigate("exercise") },
                 navigateToAddFriends = { navController.navigate("friends") },
                 onLogout = {
-                    scope.launch {
-                        authStore.clearToken()
-                        navController.navigate("login") {
-                            popUpTo(0) { inclusive = true }
-                        }
-                    }
+                   authViewModel.logout {
+                       navController.navigate("login"){
+                           popUpTo(0) {inclusive = true}
+                       }
+                   }
                 }
             )
         }
@@ -85,8 +84,8 @@ fun NavigationGraph(
                 navigateToAddFriends = { navController.navigate("friends") },
                 naviateToPickExercise = { navController.navigate("pick_exercise") },
                 onLogout = {
-                    scope.launch {
-                        authStore.clearToken()
+                    // PERBAIKAN DI SINI JUGA
+                    authViewModel.logout {
                         navController.navigate("login") {
                             popUpTo(0) { inclusive = true }
                         }
@@ -119,8 +118,7 @@ fun NavigationGraph(
                     navController.navigate("streak/$friendId/$friendUsername")
                 },
                 onLogout = {
-                    scope.launch {
-                        authStore.clearToken()
+                    authViewModel.logout {
                         navController.navigate("login") {
                             popUpTo(0) { inclusive = true }
                         }

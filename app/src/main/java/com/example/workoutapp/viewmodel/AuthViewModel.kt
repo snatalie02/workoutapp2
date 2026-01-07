@@ -47,14 +47,15 @@ class AuthViewModel(
         }
     }
 
-    // BAGIAN : SHARON
-//    fun logout(onLoggedOut: () -> Unit) {
-//        viewModelScope.launch {
-//            store.clearToken()
-//            onLoggedOut() // ke view login
-//
-//        }
-//    }
+
+    fun logout(onLoggedOut: () -> Unit) {
+        viewModelScope.launch {
+            store.clearToken()
+            _state.value = ""
+            onLoggedOut() // ke view login
+
+        }
+    }
 
 
 }
